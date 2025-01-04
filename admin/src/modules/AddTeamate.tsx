@@ -67,12 +67,12 @@ export function AddTeamate() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.fullName.trim()) newErrors.fullName = "Fullname is required.";
+    if (!formData.fullName.trim()) newErrors.fullName = "Имя обязательно.";
     if (!formData.biography.trim())
-      newErrors.biography = "Biography is required.";
-    if (!formData.role.trim()) newErrors.role = "Role is required.";
-    if (!formData.photo) newErrors.photo = "Photo is required.";
-    if (formData.skills.length <= 0) newErrors.skills = "Skills are required.";
+      newErrors.biography = "Биография обязательна.";
+    if (!formData.role.trim()) newErrors.role = "Роль обязательна.";
+    if (!formData.photo) newErrors.photo = "Фотография обязательна.";
+    if (formData.skills.length <= 0) newErrors.skills = "Навыки обязательны.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -120,16 +120,16 @@ export function AddTeamate() {
 
       console.log(response);
 
-      toast("Teamate has been added", {
+      toast("Участник команды был добавлен", {
         action: {
-          label: "Remove",
+          label: "Отменить",
           onClick: () => console.log("Undo"),
         },
       });
       resetForm();
       setIsSheetOpen(false);
     } catch (error: any) {
-      alert(error.message || "Something went wrong.");
+      alert(error.message || "Что-то пошло не так.");
     } finally {
       setIsLoading(false);
     }
@@ -144,21 +144,21 @@ export function AddTeamate() {
       }}
     >
       <SheetTrigger asChild>
-        <Button variant="secondary">New Teammate</Button>
+        <Button variant="secondary">Новый участник</Button>
       </SheetTrigger>
       <SheetContent className="h-screen overflow-y-auto w-full sm:max-w-md sm:h-auto bg-[#202020] text-white border-none">
         <SheetHeader>
           <SheetTitle className="text-white text-2xl">
-            Add a new teammate
+            Добавить нового участника
           </SheetTitle>
         </SheetHeader>
         <SheetDescription>
-          <span>Fill all fields to add a teammate</span>
+          <span>Заполните все поля, чтобы добавить участника</span>
         </SheetDescription>
         <div className="flex flex-col gap-4 py-4">
           <div className="space-y-1">
             <Label htmlFor="fullName">
-              Full Name <span className="text-blue-600">*</span>
+              Полное имя <span className="text-blue-600">*</span>
             </Label>
             <Input
               id="fullName"
@@ -174,7 +174,7 @@ export function AddTeamate() {
 
           <div className="space-y-1">
             <Label htmlFor="biography">
-              Biography <span className="text-blue-600">*</span>
+              Биография <span className="text-blue-600">*</span>
             </Label>
             <Textarea
               id="biography"
@@ -190,7 +190,7 @@ export function AddTeamate() {
 
           <div className="space-y-1">
             <Label htmlFor="role">
-              Role <span className="text-blue-600">*</span>
+              Роль <span className="text-blue-600">*</span>
             </Label>
             <Select
               value={formData.role}
@@ -198,14 +198,14 @@ export function AddTeamate() {
               onValueChange={handleRoleChange}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select a role" />
+                <SelectValue placeholder="Выберите роль" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Roles</SelectLabel>
-                  <SelectItem value="developer">Developer</SelectItem>
-                  <SelectItem value="designer">Designer</SelectItem>
-                  <SelectItem value="manager">Manager</SelectItem>
+                  <SelectLabel>Роли</SelectLabel>
+                  <SelectItem value="developer">Разработчик</SelectItem>
+                  <SelectItem value="designer">Дизайнер</SelectItem>
+                  <SelectItem value="manager">Менеджер</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -216,7 +216,7 @@ export function AddTeamate() {
 
           <div className="space-y-2">
             <Label htmlFor="photo">
-              Photo <span className="text-blue-600">*</span>
+              Фотография <span className="text-blue-600">*</span>
             </Label>
             <div className="flex items-center space-x-4">
               <label
@@ -226,11 +226,11 @@ export function AddTeamate() {
                 {formData.photo ? (
                   <img
                     src={URL.createObjectURL(formData.photo)}
-                    alt="Preview"
+                    alt="Превью"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <span className="text-sm text-gray-400">Upload Photo</span>
+                  <span className="text-sm text-gray-400">Загрузить фото</span>
                 )}
                 <Input
                   id="photo"
@@ -246,7 +246,7 @@ export function AddTeamate() {
                   onClick={() => setFormData({ ...formData, photo: null })}
                   variant="destructive"
                 >
-                  Remove
+                  Удалить
                 </Button>
               )}
             </div>
@@ -257,7 +257,7 @@ export function AddTeamate() {
 
           <div>
             <Label htmlFor="skills">
-              Skills <span className="text-blue-600">*</span>
+              Навыки <span className="text-blue-600">*</span>
             </Label>
             <div className="flex my-3 gap-3">
               <Input
@@ -266,7 +266,7 @@ export function AddTeamate() {
                 onChange={(e) => setNewSkill(e.target.value)}
               />
               <Button variant={"secondary"} onClick={handleAddSkill}>
-                add skill
+                добавить навык
               </Button>
             </div>
             <div className="flex gap-2 my-2 flex-wrap">
@@ -308,7 +308,7 @@ export function AddTeamate() {
             onClick={handleSubmit}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "Add New Teammate"}
+            {isLoading ? "Загрузка..." : "Добавить нового участника"}
           </Button>
         </SheetFooter>
       </SheetContent>

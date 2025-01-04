@@ -1,34 +1,52 @@
 import {
   Users,
-  GalleryHorizontalEnd,
+  CalendarCheck,
   PanelLeftOpen,
   PanelLeftClose,
   CodeXml,
+  LogOut,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export function AppSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const items = [
     {
-      title: "Portfolios",
+      title: "Портфолио",
       url: "/",
-      icon: GalleryHorizontalEnd,
+      icon: CalendarCheck,
     },
     {
-      title: "Admins",
+      title: "Админы",
       url: "/admins",
       icon: Users,
     },
     {
-      title: "Team",
+      title: "Команда",
       url: "/team",
       icon: CodeXml,
     },
   ];
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   return (
     <aside
@@ -70,6 +88,35 @@ export function AppSidebar() {
             </Link>
           </li>
         ))}
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <li
+              className={`absolute bottom-5 cursor-pointer flex items-center gap-2 ${
+                !isSidebarOpen ? "justify-center" : ""
+              }`}
+            >
+              <LogOut size={18} />
+              <span className={`${isSidebarOpen ? "" : "hidden"}`}>Выйти</span>
+            </li>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="bg-[#202020] border-none">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="text-white">
+                Вы точно хотите выйти?
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                После выхода ваши данные будут утерены
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Отменить</AlertDialogCancel>
+              <AlertDialogAction onClick={handleLogout}>
+                Применить
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </ul>
     </aside>
   );

@@ -11,6 +11,7 @@ export interface TeamateTypes {
   biography: string;
   role: string;
   photo: string;
+  portfolios: PortfolioTypes[];
   skills: string[];
 }
 
@@ -22,5 +23,6 @@ export interface PortfolioTypes {
   likeCount: number;
   photo: string;
   link: string;
+  authors: TeamateTypes[];
   tags: string[];
 }

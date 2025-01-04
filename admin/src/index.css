@@ -82,6 +82,7 @@
 }
 
 * {
-  font-family: "Outfit", serif;
+  font-family: "Rubik", serif;
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }

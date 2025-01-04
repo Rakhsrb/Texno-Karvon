@@ -11,6 +11,7 @@ import { Fetch } from "./middlewares/Fetch";
 import Portfolios from "./pages/Portfolios";
 import Admins from "./pages/Admins";
 import Team from "./pages/Team";
+import PortfolioDetail from "./pages/PortfolioDetail";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -51,6 +52,10 @@ function App() {
             {
               index: true,
               element: <Portfolios />,
+            },
+            {
+              path: "/portfolios/:id",
+              element: <PortfolioDetail />,
             },
             {
               path: "/admins",

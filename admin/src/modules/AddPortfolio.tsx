@@ -70,13 +70,14 @@ export function AddPortfolio() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.title.trim()) newErrors.title = "Title is required.";
+    if (!formData.title.trim()) newErrors.title = "Заголовок обязателен.";
     if (!formData.description.trim())
-      newErrors.description = "Description is required.";
-    if (!formData.link.trim()) newErrors.link = "Link is required.";
-    if (!formData.category.trim()) newErrors.category = "Category is required.";
-    if (!formData.photo) newErrors.photo = "Photo is required.";
-    if (formData.tags.length <= 0) newErrors.tags = "Tags are required.";
+      newErrors.description = "Описание обязательно.";
+    if (!formData.link.trim()) newErrors.link = "Ссылка обязательна.";
+    if (!formData.category.trim())
+      newErrors.category = "Категория обязательна.";
+    if (!formData.photo) newErrors.photo = "Фото обязательно.";
+    if (formData.tags.length <= 0) newErrors.tags = "Теги обязательны.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -130,16 +131,16 @@ export function AddPortfolio() {
 
       console.log(response);
 
-      toast("Portfolio has been added", {
+      toast("Портфолио успешно добавлено", {
         action: {
-          label: "Remove",
-          onClick: () => console.log("Undo"),
+          label: "Отменить",
+          onClick: () => console.log("Отмена"),
         },
       });
       resetForm();
       setIsSheetOpen(false);
     } catch (error: any) {
-      alert(error.message || "Something went wrong.");
+      alert(error.message || "Что-то пошло не так.");
     } finally {
       setIsLoading(false);
     }
@@ -154,21 +155,21 @@ export function AddPortfolio() {
       }}
     >
       <SheetTrigger asChild>
-        <Button variant="secondary">New Portfolio</Button>
+        <Button variant="secondary">Добавить Портфолио</Button>
       </SheetTrigger>
       <SheetContent className="h-screen overflow-y-auto w-full sm:max-w-md sm:h-auto bg-[#202020] text-white border-none">
         <SheetHeader>
           <SheetTitle className="text-white text-2xl">
-            Add a new portfolio
+            Добавление нового портфолио
           </SheetTitle>
         </SheetHeader>
         <SheetDescription>
-          <span>Fill all fields to add a portfolio item</span>
+          <span>Заполните все поля для добавления элемента портфолио</span>
         </SheetDescription>
         <div className="flex flex-col gap-4 py-4">
           <div className="space-y-1">
             <Label htmlFor="title">
-              Title{" "}
+              Заголовок{" "}
               <span
                 className={`${errors.title ? "text-red-600" : "text-blue-600"}`}
               >
@@ -189,7 +190,7 @@ export function AddPortfolio() {
 
           <div className="space-y-1">
             <Label htmlFor="description">
-              Description{" "}
+              Описание{" "}
               <span
                 className={`${
                   errors.description ? "text-red-600" : "text-blue-600"
@@ -212,7 +213,7 @@ export function AddPortfolio() {
 
           <div className="space-y-1">
             <Label htmlFor="link">
-              Link{" "}
+              Ссылка{" "}
               <span
                 className={`${errors.link ? "text-red-600" : "text-blue-600"}`}
               >
@@ -233,7 +234,7 @@ export function AddPortfolio() {
 
           <div className="space-y-1">
             <Label htmlFor="category">
-              Category
+              Категория
               <span
                 className={`${
                   errors.category ? "text-red-600" : "text-blue-600"
@@ -252,10 +253,10 @@ export function AddPortfolio() {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Categories</SelectLabel>
-                  <SelectItem value="website">Website</SelectItem>
-                  <SelectItem value="mobile">Mobile application</SelectItem>
-                  <SelectItem value="crm">CRM System</SelectItem>
+                  <SelectLabel>Категории</SelectLabel>
+                  <SelectItem value="website">Вебсайт</SelectItem>
+                  <SelectItem value="mobile">Мобильные приложения</SelectItem>
+                  <SelectItem value="crm">CRM-система</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -270,7 +271,7 @@ export function AddPortfolio() {
               htmlFor="photo"
               className="block text-sm font-medium text-white"
             >
-              Photo
+              Фотография
               <span
                 className={`${errors.photo ? "text-red-600" : "text-blue-600"}`}
               >
@@ -289,7 +290,9 @@ export function AddPortfolio() {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <span className="text-sm text-gray-400">Upload Photo</span>
+                  <span className="text-sm text-gray-400">
+                    Загрузить фотографию
+                  </span>
                 )}
                 <Input
                   id="photo"
@@ -305,7 +308,7 @@ export function AddPortfolio() {
                   onClick={() => setFormData({ ...formData, photo: null })}
                   className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
                 >
-                  Remove
+                  Убрать
                 </button>
               )}
             </div>
@@ -316,7 +319,7 @@ export function AddPortfolio() {
 
           <div>
             <Label htmlFor="tags">
-              Tags{" "}
+              Теги{" "}
               <span
                 className={`${errors.tags ? "text-red-600" : "text-blue-600"}`}
               >
@@ -350,7 +353,7 @@ export function AddPortfolio() {
                 className={`${errors.tags ? "border-red-500" : ""} flex-1`}
               />
               <Button type="button" onClick={handleAddTag} variant="secondary">
-                Add Tag
+                Добавить тег
               </Button>
             </div>
             {errors.tags && (
@@ -387,7 +390,7 @@ export function AddPortfolio() {
             onClick={handleSubmit}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "Add new portfolio"}
+            {isLoading ? "Загрузка..." : "Добавить Портфолио"}
           </Button>
         </SheetFooter>
       </SheetContent>

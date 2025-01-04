@@ -38,20 +38,20 @@ export function AddAdmin() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full name is required.";
+      newErrors.fullName = "Полное имя обязательно.";
     }
     if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required.";
+      newErrors.phoneNumber = "Номер телефона обязателен.";
     } else if (!/^\+998\d{9}$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "Invalid phone number format.";
+      newErrors.phoneNumber = "Неверный формат номера телефона.";
     }
     if (!formData.password) {
-      newErrors.password = "Password is required.";
+      newErrors.password = "Пароль обязателен.";
     } else if (
       !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(formData.password)
     ) {
       newErrors.password =
-        "Password must be at least 8 characters long and contain at least one letter and one number.";
+        "Пароль должен содержать не менее 8 символов и включать хотя бы одну букву и одну цифру.";
     }
 
     setErrors(newErrors);
@@ -72,16 +72,16 @@ export function AddAdmin() {
       const response = await Fetch.post("users/create", formData);
       console.log(response);
 
-      toast("Admin has been created", {
+      toast("Администратор был создан", {
         action: {
-          label: "Remove",
-          onClick: () => console.log("Undo"),
+          label: "Удалить",
+          onClick: () => console.log("Отменить"),
         },
       });
       resetForm();
       setIsSheetOpen(false);
     } catch (error) {
-      alert("Failed to create admin. Please try again.");
+      alert("Не удалось создать администратора. Попробуйте еще раз.");
     } finally {
       setIsLoading(false);
     }
@@ -96,21 +96,21 @@ export function AddAdmin() {
       }}
     >
       <SheetTrigger asChild>
-        <Button variant="secondary">New admin</Button>
+        <Button variant="secondary">Новый администратор</Button>
       </SheetTrigger>
       <SheetContent className="h-full w-full sm:max-w-md sm:h-auto bg-[#202020] text-white border-none">
         <SheetHeader>
           <SheetTitle className="text-white text-2xl">
-            Create a new admin
+            Создать нового администратора
           </SheetTitle>
         </SheetHeader>
         <SheetDescription>
-          <span>Fill all fields to create an admin</span>
+          <span>Заполните все поля для создания администратора</span>
         </SheetDescription>
         <div className="flex flex-col gap-4 py-4">
           <div className="space-y-1">
             <Label htmlFor="fullName">
-              Fullname{" "}
+              Полное имя{" "}
               <span
                 className={`${
                   errors.fullName ? "text-red-500" : "text-blue-500"
@@ -131,7 +131,7 @@ export function AddAdmin() {
           </div>
           <div className="space-y-1">
             <Label htmlFor="phoneNumber">
-              Phone number{" "}
+              Номер телефона{" "}
               <span
                 className={`${
                   errors.phoneNumber ? "text-red-500" : "text-blue-500"
@@ -152,7 +152,7 @@ export function AddAdmin() {
           </div>
           <div className="space-y-1">
             <Label htmlFor="password">
-              Password{" "}
+              Пароль{" "}
               <span
                 className={`${
                   errors.password ? "text-red-500" : "text-blue-500"
@@ -172,9 +172,9 @@ export function AddAdmin() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-3 text-gray-500 hover:text-gray-300 focus:outline-none"
+                className="absolute inset-y-0 right-3 text-gray-300 focus:outline-none"
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? "Скрыть" : "Показать"}
               </button>
             </div>
             {errors.password && (
@@ -189,7 +189,7 @@ export function AddAdmin() {
             onClick={handleSubmit}
             disabled={isLoading}
           >
-            {isLoading ? "Creating..." : "Create"}
+            {isLoading ? "Создание..." : "Создать"}
           </Button>
         </SheetFooter>
       </SheetContent>
