@@ -21,10 +21,12 @@ export const PortfolioCard = ({
     <div className="bg-[#323232] rounded-lg overflow-hidden group hover:ring-2 hover:ring-[#E94D35] transition-all">
       <div className="relative aspect-video">
         <Image src={photo} alt={title} fill className="object-cover" />
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <Button className="bg-[#E94D35] hover:bg-[#E94D35]/90">
-            Подробнее
-          </Button>
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-opacity flex items-center justify-center">
+          <Link href={`/portfolios/${title}`}>
+            <Button className="bg-[#E94D35] hover:bg-[#E94D35]/90">
+              Подробнее
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="p-4 space-y-4">
