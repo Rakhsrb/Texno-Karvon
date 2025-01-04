@@ -19,7 +19,7 @@ function Header() {
     { label: "Портфолио", url: "/portfolios" },
     { label: "О нас", url: "/about" },
     { label: "Сервисы", url: "/services" },
-    { label: "Контакты", url: "/contact" },
+    { label: "Контакты", url: "/contacts" },
   ];
 
   return (
@@ -58,12 +58,14 @@ function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button
-            variant="default"
-            className="hidden md:flex bg-[#E94D35] hover:bg-[#E94D35]/90 text-white font-medium px-6"
-          >
-            Связаться
-          </Button>
+          <Link href="tel:+998900021462">
+            <Button
+              variant="default"
+              className="hidden md:flex bg-[#E94D35] hover:bg-[#E94D35]/90 text-white font-medium px-6"
+            >
+              Связаться
+            </Button>
+          </Link>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -112,12 +114,14 @@ function Header() {
                   </ul>
                 </nav>
                 <div className="p-6 border-t border-[#323232]">
-                  <Button
-                    className="w-full bg-[#E94D35] hover:bg-[#E94D35]/90 text-white font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Связаться
-                  </Button>
+                  <Link href="tel:+998900021462">
+                    <Button
+                      className="w-full bg-[#E94D35] hover:bg-[#E94D35]/90 text-white font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Связаться
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </SheetContent>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "../components/shared/Header";
+import { Footer } from "@/components/shared/Footer";
 
 export const metadata: Metadata = {
   title: "Техно Карвон",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ const nextConfig = {
       "images.ctfassets.net",
       "wac-cdn.atlassian.com",
       "plus.unsplash.com",
+      "localhost",
     ],
   },
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Globe, Smartphone, Database } from "lucide-react";
 
@@ -28,9 +27,14 @@ function AboutSection() {
   return (
     <section className="border-b border-[#323232]">
       <div className="container h-full border-l border-r border-[#323232] px-6 py-20">
-        <h1 className="text-center text-4xl font-bold text-white">
-          <span className="text-[#E94D35]">✴</span> О нас
-        </h1>
+        <div className="mb-16 text-center">
+          <span className="mb-2 inline-block text-[#E94D35]">
+            <span className="animate-pulse text-2xl">✴</span>
+          </span>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-white">
+            О нас
+          </h1>
+        </div>
         <div className="mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

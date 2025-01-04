@@ -69,11 +69,18 @@
 
 * {
   font-family: "Rubik", serif;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(255, 55, 0, 0.627);
+  color: #171717;
 }
 
 body {
   background-color: #171717;
 }
+
 .container {
   margin: 0 auto;
 }

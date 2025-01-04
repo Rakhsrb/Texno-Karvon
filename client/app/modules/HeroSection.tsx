@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -21,15 +22,19 @@ export default function HeroSection() {
             <span className="text-red-500">✴</span> CRM
           </div>
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              className="rounded-lg hover:bg-[#b93b28] bg-[#E94D35] hover:text-white text-white border-black"
-            >
-              Нужен Сервис?
-            </Button>
-            <Button variant="outline" className="rounded-lg border-black">
-              Связаться
-            </Button>
+            <Link href={"/services"}>
+              <Button
+                variant="outline"
+                className="rounded-lg hover:bg-[#b93b28] bg-[#E94D35] hover:text-white text-white border-black"
+              >
+                Нужен Сервис?
+              </Button>
+            </Link>
+            <Link href={"tel:+998900021462"}>
+              <Button variant="outline" className="rounded-lg border-black">
+                Связаться
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

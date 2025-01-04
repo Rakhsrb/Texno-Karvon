@@ -43,9 +43,14 @@ export default function ServicesSection() {
   return (
     <section className="border-b border-[#323232]">
       <div className="container h-full border-l border-r border-[#323232] px-6 py-20">
-        <h1 className="text-center text-4xl font-bold text-white">
-          <span className="text-[#E94D35]">✴</span> Сервисы
-        </h1>
+        <div className="mb-16 text-center">
+          <span className="mb-2 inline-block text-[#E94D35]">
+            <span className="animate-pulse text-2xl">✴</span>
+          </span>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-white">
+            Наши сервисы
+          </h1>
+        </div>
 
         <div className="mt-20 grid lg:grid-cols-2 gap-12 lg:gap-24 text-white">
           <div className="space-y-6">
