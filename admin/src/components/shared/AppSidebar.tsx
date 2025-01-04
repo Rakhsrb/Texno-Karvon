@@ -3,6 +3,7 @@ import {
   GalleryHorizontalEnd,
   PanelLeftOpen,
   PanelLeftClose,
+  CodeXml,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -21,6 +22,11 @@ export function AppSidebar() {
       title: "Admins",
       url: "/admins",
       icon: Users,
+    },
+    {
+      title: "Team",
+      url: "/team",
+      icon: CodeXml,
     },
   ];
 

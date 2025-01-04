@@ -233,6 +233,7 @@ export function AddPortfolio() {
 
           <div className="space-y-1">
             <Label htmlFor="category">
+              Category
               <span
                 className={`${
                   errors.category ? "text-red-600" : "text-blue-600"

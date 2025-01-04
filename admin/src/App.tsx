@@ -10,6 +10,7 @@ import { RootState } from "./store/RootStore";
 import { Fetch } from "./middlewares/Fetch";
 import Portfolios from "./pages/Portfolios";
 import Admins from "./pages/Admins";
+import Team from "./pages/Team";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -54,6 +55,10 @@ function App() {
             {
               path: "/admins",
               element: <Admins />,
+            },
+            {
+              path: "/team",
+              element: <Team />,
             },
             {
               path: "*",

@@ -1,57 +1,40 @@
+import { Fetch } from "@/middlewares/Fetch";
+import { RootState } from "@/store/RootStore";
 import { useEffect } from "react";
-import { RootState } from "../store/RootStore";
+import { setTeam, setTeamError, setTeamPending } from "@/toolkit/TeamSlicer";
 import { useDispatch, useSelector } from "react-redux";
-import { Fetch } from "../middlewares/Fetch";
-import { UserTypes } from "../types/RootTypes";
-import {
-  setAdmins,
-  setAdminsError,
-  setAdminsPending,
-} from "../toolkit/AdminsSlicer";
+import { TeamateTypes } from "@/types/RootTypes";
+import { AddTeamate } from "@/modules/AddTeamate";
 import { Sheet } from "@/components/ui/sheet";
-import { AddAdmin } from "@/modules/AddAdmin";
 
-export default function Admins() {
+function Team() {
   const { isPending, data, error } = useSelector(
-    (state: RootState) => state.admins
+    (state: RootState) => state.team
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function getData() {
       try {
-        dispatch(setAdminsPending());
-        const response = (await Fetch.get("users")).data;
+        dispatch(setTeamPending());
+        const response = (await Fetch.get("team")).data;
         if (response.data) {
-          dispatch(setAdmins(response.data));
+          dispatch(setTeam(response.data));
         } else {
-          dispatch(setAdminsError(response.message));
+          dispatch(setTeamError(response.message));
         }
       } catch (error: any) {
-        dispatch(
-          setAdminsError(error.response?.data.message || "Unknown Token")
-        );
+        dispatch(setTeamError(error.response?.data.message || "Unknown Token"));
       }
     }
     getData();
   }, [dispatch]);
-
-  //   const handleDeleteAdmin = async (id: string) => {
-  //     try {
-  //       (await Axios.delete(`admins/${id}`)).data;
-  //       dispatch(setAdmins(data.filter((admin) => admin._id !== id)));
-  //       window.location.href = "/admins";
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4 gap-3 flex-wrap">
-        <h1 className="text-2xl font-bold text-white">Admins</h1>
+        <h1 className="text-2xl font-bold text-white">Team</h1>
         <Sheet>
-          <AddAdmin />
+          <AddTeamate />
         </Sheet>
       </div>
 
@@ -74,20 +57,21 @@ export default function Admins() {
         </div>
       ) : data.length <= 0 ? (
         <div className="flex justify-center items-center h-40">
-          <p className="text-lg font-medium text-gray-300">Admin yo'q</p>
+          <p className="text-lg font-medium text-gray-300">No one in team</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {data?.map((admin: UserTypes) => (
+          {data?.map((teamate: TeamateTypes) => (
             <div
-              key={admin._id}
+              key={teamate._id}
               style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px" }}
               className="bg-[#202020] rounded-lg p-4 flex flex-col gap-3"
             >
+              <img src={teamate.photo} alt={teamate.fullName} />
               <h2 className="text-lg font-semibold truncate text-white">
-                {admin.fullName}
+                {teamate.fullName}
               </h2>
-              <p className="text-gray-300 text-sm">{admin.phoneNumber}</p>
+              <p className="text-gray-300 text-sm">{teamate.role}</p>
             </div>
           ))}
         </div>
@@ -95,3 +79,5 @@ export default function Admins() {
     </div>
   );
 }
+
+export default Team;
