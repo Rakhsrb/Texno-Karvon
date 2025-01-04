@@ -8,6 +8,7 @@ const Portfolio = new mongoose.Schema({
   photo: { type: String, required: true },
   likeCount: { type: Number, default: 0 },
   tags: [{ type: String }],
+  authors: [{ type: mongoose.Schema.Types.ObjectId, ref: "Team" }],
 });
 
 export default mongoose.model("Portfolio", Portfolio);

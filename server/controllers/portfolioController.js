@@ -38,7 +38,7 @@ export async function getAllPortfolios(req, res) {
     if (category) query.category = category;
     if (title) query.title = { $regex: title, $options: "i" };
 
-    const portfolios = await Portfolio.find(query);
+    const portfolios = await Portfolio.find(query).populate("authors");
     return res.status(200).json({ data: portfolios });
   } catch (error) {
     console.error("Error retrieving portfolios:", error);
