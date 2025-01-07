@@ -45,9 +45,40 @@ export const PortfolioCard = ({
             </div>
           ) : (
             <HoverCard>
-              <HoverCardTrigger>Авторы</HoverCardTrigger>
-              <HoverCardContent>
-                The React Framework – created and maintained by @vercel.
+              <HoverCardTrigger>
+                <div className="flex gap-1">
+                  <span className="text-sm">Авторы:</span>
+                  <div className="flex">
+                    {authors.map((author, index) => (
+                      <img
+                        key={index}
+                        src={author.photo}
+                        alt={author.fullName}
+                        className="rounded-full object-cover w-6 h-6"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent className="bg-[#323232] border-none p-0 overflow-hidden">
+                <div className="flex flex-col gap-2">
+                  {authors.map((author, index) => (
+                    <div
+                      key={index}
+                      className="flex gap-2 items-center hover:bg-[#4c4c4c] p-2"
+                    >
+                      <img
+                        src={author.photo}
+                        alt={author.fullName}
+                        className="rounded-full object-cover w-8 h-8"
+                      />
+                      <div>
+                        <h3 className="text-white">{author.fullName}</h3>
+                        <h4 className="text-gray-400">{author.role}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </HoverCardContent>
             </HoverCard>
           )}

@@ -15,7 +15,7 @@ export async function generateMetadata({
 }: {
   params: { title: string };
 }): Promise<Metadata> {
-  const { title } = params;
+  const { title } = await params;
   return {
     title: `Портфолио | ${decodeURIComponent(title)}`,
   };
@@ -50,7 +50,7 @@ async function PortfolioContent({ title }: { title: string }) {
         </div>
 
         <div className="space-y-6">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-wrap justify-between items-center gap-4">
             <h1 className="text-4xl md:text-6xl font-bold">{template.title}</h1>
             <div className="flex flex-wrap gap-2">
               {template.tags.map((tag) => (
@@ -182,7 +182,7 @@ export default function PortfolioDetail({
 }) {
   return (
     <section className="text-white border-b border-[#323232]">
-      <div className="container border-l border-r border-[#323232] py-20 px-6">
+      <div className="container border-l border-r border-[#323232] py-16 px-6">
         <Suspense fallback={<PortfolioSkeleton />}>
           <PortfolioContent title={params.title} />
         </Suspense>
