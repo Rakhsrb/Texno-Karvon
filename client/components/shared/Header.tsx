@@ -19,7 +19,7 @@ function Header() {
     { label: "Портфолио", url: "/portfolios" },
     { label: "О нас", url: "/about" },
     { label: "Сервисы", url: "/services" },
-    { label: "Контакты", url: "/contacts" },
+    { label: "Карьера", url: "/career" },
   ];
 
   return (

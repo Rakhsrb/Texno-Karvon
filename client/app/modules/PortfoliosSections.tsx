@@ -93,29 +93,37 @@ export default function PortfoliosSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-          {isPending
-            ? [...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="bg-[#3e3e3e] rounded-lg overflow-hidden shadow-lg"
-                >
-                  <Skeleton className="aspect-video w-full" />
-                  <div className="p-6 space-y-4">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full" />
-                    <div className="flex items-center justify-between">
-                      <Skeleton className="h-4 w-20" />
-                      <Skeleton className="h-6 w-16 rounded-full" />
-                    </div>
+        {isPending ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="bg-[#3e3e3e] rounded-lg overflow-hidden shadow-lg"
+              >
+                <Skeleton className="aspect-video w-full" />
+                <div className="p-6 space-y-4">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-4 w-20" />
+                    <Skeleton className="h-6 w-16 rounded-full" />
                   </div>
                 </div>
-              ))
-            : data.map((template) => (
-                <PortfolioCard key={template._id} {...template} />
-              ))}
-        </div>
+              </div>
+            ))}{" "}
+          </div>
+        ) : data.length <= 0 ? (
+          <div className="flex items-center justify-center w-full text-center h-[20vh]">
+            <h1 className="font-bold opacity-70">Пока что нет портфолио</h1>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+            {data.map((template) => (
+              <PortfolioCard key={template._id} {...template} />
+            ))}{" "}
+          </div>
+        )}
       </div>
     </section>
   );

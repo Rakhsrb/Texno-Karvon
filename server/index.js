@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import UserRoutes from "./routes/userRoutes.js";
 import PortfolioRoutes from "./routes/portfolioRoutes.js";
 import TeamRoutes from "./routes/teamRoutes.js";
+import CareerRoutes from "./routes/careerRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/users", UserRoutes);
 app.use("/portfolios", PortfolioRoutes);
 app.use("/team", TeamRoutes);
+app.use("/career", CareerRoutes);
 
 async function runApp() {
   try {

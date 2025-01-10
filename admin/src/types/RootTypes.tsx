@@ -26,3 +26,14 @@ export interface PortfolioTypes {
   authors: TeamateTypes[];
   tags: string[];
 }
+
+export interface CareerTypes {
+  _id?: string;
+  name: string;
+  salary: {
+    from: number;
+    to: number;
+  };
+  requirements: string[];
+  tasks: string[];
+}

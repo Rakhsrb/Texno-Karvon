@@ -31,11 +31,17 @@ export const PortfolioCard = ({
       </div>
       <div className="p-4 space-y-4">
         <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="text-gray-400 text-sm line-clamp-2">{description}</p>
+        <p className="text-gray-400 text-sm line-clamp-2 truncate">
+          {description}
+        </p>
         <div className="flex items-center justify-between">
-          {authors.length <= 1 ? (
+          {authors.length <= 0 ? (
+            <span className="text-[12px] font-semibold opacity-80">
+              Нет автора
+            </span>
+          ) : authors.length <= 1 ? (
             <div className="flex items-center space-x-2">
-              <Avatar>
+              <Avatar className="w-6 h-6">
                 <AvatarImage src={authors[0]?.photo} />
                 <AvatarFallback>{authors[0].fullName.charAt(0)}</AvatarFallback>
               </Avatar>
@@ -46,15 +52,15 @@ export const PortfolioCard = ({
           ) : (
             <HoverCard>
               <HoverCardTrigger>
-                <div className="flex gap-1">
-                  <span className="text-sm">Авторы:</span>
-                  <div className="flex">
+                <div className="flex items-center gap-1">
+                  <span className="text-sm">Авторы: {authors.length}+</span>
+                  <div className="flex gap-1">
                     {authors.map((author, index) => (
                       <img
                         key={index}
                         src={author.photo}
                         alt={author.fullName}
-                        className="rounded-full object-cover w-6 h-6"
+                        className="rounded-full object-cover w-4 h-4"
                       />
                     ))}
                   </div>

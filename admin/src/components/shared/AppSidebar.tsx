@@ -3,6 +3,7 @@ import {
   CalendarCheck,
   PanelLeftOpen,
   PanelLeftClose,
+  BriefcaseBusiness,
   CodeXml,
   LogOut,
 } from "lucide-react";
@@ -40,6 +41,11 @@ export function AppSidebar() {
       title: "Команда",
       url: "/team",
       icon: CodeXml,
+    },
+    {
+      title: "Вакансии",
+      url: "/career",
+      icon: BriefcaseBusiness,
     },
   ];
 

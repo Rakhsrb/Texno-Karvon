@@ -155,7 +155,7 @@ export function AddPortfolio() {
       }}
     >
       <SheetTrigger asChild>
-        <Button variant="secondary">Добавить Портфолио</Button>
+        <Button variant="secondary">Портфолио</Button>
       </SheetTrigger>
       <SheetContent className="h-screen overflow-y-auto w-full sm:max-w-md sm:h-auto bg-[#202020] text-white border-none">
         <SheetHeader>

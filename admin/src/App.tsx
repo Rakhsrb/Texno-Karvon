@@ -12,6 +12,7 @@ import Portfolios from "./pages/Portfolios";
 import Admins from "./pages/Admins";
 import Team from "./pages/Team";
 import PortfolioDetail from "./pages/PortfolioDetail";
+import Career from "./pages/Career";
 
 function App() {
   const { isPending, isAuth } = useSelector((state: RootState) => state.user);
@@ -60,6 +61,10 @@ function App() {
             {
               path: "/admins",
               element: <Admins />,
+            },
+            {
+              path: "/career",
+              element: <Career />,
             },
             {
               path: "/team",
