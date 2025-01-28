@@ -3,6 +3,7 @@ import UserSlicer from "../toolkit/UserSlicer";
 import PortfolioSlicer from "../toolkit/PortfolioSlicer";
 import AdminsSlicerSlicer from "../toolkit/AdminsSlicer";
 import TeamSlicer from "../toolkit/TeamSlicer";
+import VacancySlicer from "../toolkit/VacancySlicer";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     portfolios: PortfolioSlicer,
     admins: AdminsSlicerSlicer,
     team: TeamSlicer,
+    vacancy: VacancySlicer,
   },
 });
 
